@@ -7,6 +7,7 @@ import Library from "@/pages/Library";
 import PlaylistDetail from "@/pages/PlaylistDetail";
 import NowPlaying from "@/pages/NowPlaying";
 import Settings from "@/pages/Settings";
+import Artist from "@/pages/Artist";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/library" element={<Library />} />
           <Route path="/playlist/:id" element={<PlaylistDetail />} />
+          <Route path="/artist/:id" element={<Artist />} />
           <Route path="/now-playing" element={<NowPlaying />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
