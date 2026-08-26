@@ -98,7 +98,7 @@ export async function searchAll(query: string): Promise<{ songs: Track[]; playli
   return {
     songs: (result.songs || []).map(songToTrack),
     playlists: (result.playlists || []).map((playlist) => ({ id: playlist.id, title: playlist.title || "Playlist tanpa judul", description: playlist.artist, coverUrl: playlist.cover, trackIds: [] })),
-    artists: (result.artists || []).map((artist) => ({ id: artist.browseId || artist.artistId || "", name: artist.name || artist.title || "Unknown Artist", thumbnail: artist.thumbnail || artist.thumbnails?.at(-1)?.url })).filter((artist) => artist.id),
+    artists: (result.artists || []).map((artist) => ({ id: artist.browseId || artist.artistId || "", name: artist.name || artist.title || "Unknown Artist", thumbnail: artist.thumbnail || artist.thumbnails?.[artist.thumbnails.length - 1]?.url })).filter((artist) => artist.id),
   };
 }
 
@@ -109,7 +109,7 @@ export async function getArtist(id: string) {
   return {
     id: r.artistId,
     name: r.name || "Unknown Artist",
-    artworkUrl: r.thumbnails?.at(-1)?.url,
+    artworkUrl: r.thumbnails?.[r.thumbnails.length - 1]?.url,
     topSongs: (r.topSongs || []).map((song: ApiSong) => songToTrack(song)),
     topAlbums: r.topAlbums || [],
     topSingles: r.topSingles || [],
@@ -169,4 +169,4 @@ export async function playSong(track: Track): Promise<{ audioUrl: string; durati
   const audioUrl = data.result?.download?.audio;
   if (!audioUrl) throw new Error("Audio tidak tersedia dari API play.");
   return { audioUrl, durationSec: durationFromApi(data.result?.download?.duration) };
-  }
+}
