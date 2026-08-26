@@ -31,4 +31,4 @@ export default function Artwork({ title, artworkUrl, size = 56, rounded = "round
       )}
     </div>
   );
-        }
+}
