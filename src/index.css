@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root { height: 100%; }
+  body {
+    @apply font-body;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(225,29,94,0.12), transparent 45%),
+      radial-gradient(circle at 100% 20%, rgba(244,200,116,0.06), transparent 40%),
+      #0a0508;
+  }
+  ::selection { background: rgba(225,29,94,0.35); }
+}
+
+@layer utilities {
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+  .scrollbar-none { scrollbar-width: none; }
+}
